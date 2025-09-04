@@ -1,0 +1,148 @@
+@import url('https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    list-style: none;
+    font-family: "Permanent Marker", cursive;
+}
+
+/* Inicio header */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.9375rem 1.875rem;
+    background-color: white;
+}
+
+.logo img {
+    height: 3.125rem;
+    width: auto;
+}
+
+nav {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+}
+
+nav ul {
+    display: flex;
+    gap: 1.25rem;
+}
+
+nav a {
+    text-decoration: none;
+    color: black;
+}
+
+/* fin header */
+
+
+/* inicio section hero */
+
+.hero {
+    height: 50vh;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 0 1.25rem;
+    position: relative;
+}
+
+.hero h1 {
+    font-size: 3rem;
+    margin-bottom: 1.25rem;
+}
+
+.hero p {
+    font-size: 1.2rem;
+    margin-bottom: 1.875rem;
+    max-width: 37.5rem;
+    z-index: 1;
+}
+
+/* Botón del hero */
+.hero .btn-hero {
+    background: #ff5722;
+    color: white;
+    padding: 0.75rem 1.5625rem;
+    font-size: 1.1rem;
+    border-radius: 0.5rem;
+    font-weight: bold;
+    transition: background 0.3s ease;
+    z-index: 1;
+}
+
+.hero .btn-hero:hover {
+    background: #e64a19;
+}
+
+
+/* fin section hero */
+
+/* inicio servicios */
+
+/* Sección Servicios */
+.services {
+    text-align: center;
+}
+
+.services h2 {
+    font-size: 2.5rem;
+    margin-bottom: 0.625rem;
+}
+
+.services .subtitle {
+    font-size: 1.2rem;
+    margin-bottom: 3.125rem;
+    color: #555;
+}
+
+.services-flex {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 30px;
+}
+
+.service-card {
+    background: #fff;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+
+    flex: 1 1 250px;
+    /* grow | shrink | basis */
+    max-width: 350px;
+    /* evita que una tarjeta se estire demasiado */
+}
+
+.service-card:hover {
+    transform: translateY(-8px);
+}
+
+.service-card img {
+    width: 60px;
+    margin-bottom: 20px;
+}
+
+.service-card h3 {
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+}
+
+.service-card p {
+    font-size: 1rem;
+    color: #666;
+}
+
+
+/* fin servicios */
