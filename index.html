@@ -13,12 +13,15 @@
         <div class="logo">
             <img src="img/logo.png" alt="" />
         </div>
-        <nav>
-            <ul>
+        <nav class="navbar">
+            <ul class="nav-links">
                 <li><a href="#">Inicio</a></li>
-                <li><a href="pages/nuestrosdiseños.html">Nuestros Diseños</a></li>
-                <li><a href="pages/tudiseño.html">Hacemos Tu diseño</a></li>
-                <li><a href="pages/tudiseño.html">Contacto</a></li>
+                <li><a href="/pages/nuevoND.html">Nuestros Diseños</a></li>
+                <!-- pages/nuestrosdiseños.html -->
+                <li><a href="#">Hacemos Tu diseño</a></li>
+                <!-- pages/tudiseño.html -->
+                <li><a href="#">Contacto</a></li>
+                <!-- pages/tudiseño.html -->
             </ul>
         </nav>
     </header>
@@ -32,35 +35,104 @@
     <section class="services">
         <div class="container">
             <h2>Nuestros Servicios</h2>
-            <p class="subtitle">Soluciones en impresión 3D adaptadas a tus necesidades</p>
+            <p class="subtitle">
+                Soluciones en impresión 3D adaptadas a tus necesidades
+            </p>
 
             <div class="services-flex">
                 <!-- Servicio 1 -->
                 <div class="service-card">
-                    <img src="icono1.png" alt="Impresión personalizada">
+                    <img src="icono1.png" alt="Impresión personalizada" />
                     <h3>Impresión Personalizada</h3>
-                    <p>Creación de piezas únicas en diferentes materiales y colores, ajustadas a tu proyecto.</p>
+                    <p>
+                        Creación de piezas únicas en diferentes materiales y colores,
+                        ajustadas a tu proyecto.
+                    </p>
                 </div>
 
                 <!-- Servicio 2 -->
                 <div class="service-card">
-                    <img src="icono2.png" alt="Souvenirs y regalos">
+                    <img src="icono2.png" alt="Souvenirs y regalos" />
                     <h3>Souvenirs & Regalos</h3>
-                    <p>Diseños exclusivos para cumpleaños, eventos, y obsequios especiales que sorprenden.</p>
+                    <p>
+                        Diseños exclusivos para cumpleaños, eventos, y obsequios
+                        especiales que sorprenden.
+                    </p>
                 </div>
 
                 <!-- Servicio 3 -->
                 <div class="service-card">
-                    <img src="icono3.png" alt="Prototipado rápido">
+                    <img src="icono3.png" alt="Prototipado rápido" />
                     <h3>Prototipado Rápido</h3>
-                    <p>Validá tus ideas con prototipos de alta calidad en poco tiempo y con costos accesibles.</p>
+                    <p>
+                        Validá tus ideas con prototipos de alta calidad en poco tiempo y
+                        con costos accesibles.
+                    </p>
                 </div>
             </div>
         </div>
     </section>
 
+    <section class="portfolio">
+        <h2>Portfolio</h2>
+        <p>Algunos de nuestros diseños y productos destacados</p>
+
+        <div class="portfolio-grid">
+            <div class="portfolio-item">
+                <img src="img/1.jpg" alt="" />
+                <div class="overlay">
+                    <h3>Proyecto 1</h3>
+                </div>
+            </div>
+
+            <div class="portfolio-item">
+                <img src="img/2.jpg" alt="" />
+                <div class="overlay">
+                    <h3>Proyecto 2</h3>
+                </div>
+            </div>
+
+            <div class="portfolio-item">
+                <img src="img/3.jpg" alt="" />
+                <div class="overlay">
+                    <h3>Proyecto 3</h3>
+                </div>
+            </div>
+
+            <div class="portfolio-item">
+                <img src="/img/4.jpg" alt="" />
+                <div class="overlay">
+                    <h3>Proyecto 4</h3>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="contacto">
+        <h2>Contacto</h2>
+        <p>¿Tenés alguna consulta o querés más información? Escribinos.</p>
+
+        <div class="contacto-contenido">
+            <!-- Formulario -->
+            <form class="contacto-form">
+                <input type="text" name="nombre" placeholder="Tu nombre" required />
+                <input type="email" name="email" placeholder="Tu correo electrónico" required />
+                <textarea name="mensaje" rows="5" placeholder="Escribe tu mensaje..." required></textarea>
+                <button type="submit">Enviar</button>
+            </form>
+
+            <!-- Info de contacto -->
+            <div class="contacto-info">
+                <h3>También podés encontrarnos en:</h3>
+                <p><strong>Tel:</strong> +54 11 30493689</p>
+                <p><strong>Email:</strong> scultura3D.studio@gmail.com</p>
+                <p><strong>Dirección:</strong> Av. San Juan 3629</p>
+            </div>
+        </div>
+    </section>
+
     <footer>
-        <p>© 2025 Scultura 3D – Todos los derechos reservados</p>
+        <p>© 2025 Scultura 3D - Todos los derechos reservados</p>
     </footer>
 </body>
 
