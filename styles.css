@@ -70,8 +70,7 @@ nav a {
 /* inicio section hero */
 
 .hero {
-    height: 50vh;
-    background-color: white;
+    height: 40vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -112,7 +111,6 @@ nav a {
 
 /* fin section hero */
 
-/* inicio servicios */
 
 /* Sección Servicios */
 .services {
@@ -127,7 +125,6 @@ nav a {
 .services .subtitle {
     font-size: 1.2rem;
     margin-bottom: 3.125rem;
-    color: #555;
 }
 
 .services-flex {
@@ -154,10 +151,7 @@ nav a {
     transform: translateY(-8px);
 }
 
-.service-card img {
-    width: 60px;
-    margin-bottom: 20px;
-}
+
 
 .service-card h3 {
     font-size: 1.5rem;
@@ -166,7 +160,6 @@ nav a {
 
 .service-card p {
     font-size: 1rem;
-    color: #666;
 }
 
 
@@ -177,7 +170,6 @@ nav a {
 .portfolio {
     padding: 4rem 2rem;
     text-align: center;
-    background-color: #f9f9f9;
 }
 
 .portfolio h2 {
@@ -245,7 +237,6 @@ nav a {
 /* Sección Contacto */
 .contacto {
     padding: 3rem 2rem;
-    background: #f5f5f5;
     text-align: center;
 }
 
