@@ -1,5 +1,75 @@
 @import url("../css/styles.css");
 
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    list-style: none;
+    font-family: "Permanent Marker", cursive;
+}
+
+/* Inicio header */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.9375rem 1.875rem;
+    background-color: white;
+}
+
+.logo img {
+    height: 3.125rem;
+    width: auto;
+}
+
+nav {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+}
+
+nav ul {
+    display: flex;
+    gap: 1.25rem;
+}
+
+nav a {
+    position: relative;
+    text-decoration: none;
+    color: black;
+}
+
+.nav-links a:hover {
+    color: #e64a19;
+}
+
+.nav-links a:active {
+    color: #555;
+}
+
+.nav-links a::after {
+    content: "";
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 0%;
+    height: 2px;
+    background: #ff5722;
+    transition: width 0.3s ease;
+}
+
+/* Subrayado animado en hover */
+.nav-links a:hover::after {
+    width: 100%;
+}
+
+/* fin header */
+
+
+/* inicio section hero */
+
 /* Layout principal */
 .layout {
     display: grid;
