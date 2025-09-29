@@ -1,0 +1,16 @@
+@import url("styles.css");
+
+.btn {
+    background-color: #ff5722 !important;
+    color: white !important;
+    border: none !important;
+    border-radius: 0.3125rem !important;
+    padding: 0.625rem 1.25rem !important;
+    font-size: 1.125rem !important;
+    cursor: pointer !important;
+    transition: background-color 0.3s ease !important;
+}
+
+.btn:hover {
+    background: #e64a19 !important;
+}

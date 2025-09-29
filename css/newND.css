@@ -4,7 +4,6 @@
 .layout {
     display: grid;
     grid-template-columns: 220px 1fr;
-    /* sidebar + contenido */
     gap: 2rem;
     max-width: 1400px;
     margin: auto;
@@ -120,6 +119,5 @@
 
     .sidebar {
         order: -1;
-        /* sidebar arriba en mobile */
     }
 }
