@@ -11,6 +11,10 @@
     font-weight: 700;
 }
 
+body {
+    overflow-y: scroll;
+}
+
 /* Inicio header */
 header {
     display: flex;
@@ -64,6 +68,35 @@ header {
 /* Subrayado animado en hover */
 .nav-links a:hover::after {
     width: 100%;
+}
+
+/* --- ESTILOS PARA EL CARRITO --- */
+.carrito-link {
+    /* Asegura que el contador se posicione relativo a este enlace */
+    position: relative; 
+    color: black; /* Cambia a tu color de marca si es necesario */
+    font-size: 1.5rem; /* Tamaño del ícono */
+    margin-left: 0.5rem; /* Separación de los íconos sociales */
+}
+
+.carrito-link:hover {
+    color: #ff5722; /* Un hover que coincida con tu naranja */
+}
+
+/* Estilo para el contador (badge) */
+#contador-carrito {
+    position: absolute;
+    top: -5px; /* Ajusta la posición vertical */
+    right: -10px; /* Ajusta la posición horizontal */
+    padding: 0.1em 0.4em;
+    border-radius: 50%;
+    background-color: #ff5722; /* Tu color naranja */
+    color: white;
+    font-size: 0.75rem; /* Tamaño de la fuente del número */
+    font-weight: bold;
+    line-height: 1;
+    min-width: 1.5em; /* Asegura que tenga espacio para dos dígitos */
+    text-align: center;
 }
 
 /* fin header */
