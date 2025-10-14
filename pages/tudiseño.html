@@ -18,6 +18,7 @@
                 <img src="../img/logo.png" alt="" />
             </a>
         </div>
+        </div>
         <nav class="_navbar">
             <ul class="nav-links">
                 <li><a href="../index.html">Inicio</a></li>
@@ -27,89 +28,59 @@
             </ul>
         </nav>
     </header>
-    
     <section class="">
         <div class="container">
             <h1 class="text-center mb-4">Hacemos tu diseño</h1>
-            <!-- Párrafo que se ocultará al enviar -->
-            <p class="text-center text-muted mb-5" id="intro-parrafo">
+            <p class="text-center text-muted mb-5">
                 Contanos tu idea y nosotros la hacemos realidad con impresión 3D.
-                Podés subir imágenes de referencia y explicarnos los detalles de lo que
+                Podés subir imágenes de referencia y explicarnos los detalles que
                 necesitás.
             </p>
 
             <div class="row justify-content-center">
                 <div class="col-lg-8">
-                    <!-- CONTENEDOR DE LA CARD DEL FORMULARIO (para ocultar con JS) -->
-                    <div class="card shadow-lg border-0 rounded-4" id="form-card-container"> 
+                    <div class="card shadow-lg border-0 rounded-4">
                         <div class="card-body p-4">
-                            <!-- ACCIÓN PRINCIPAL: El formulario se envía a FormSubmit -->
-                            <form id="formDiseno" action="https://formsubmit.co/scultura3d.studio@gmail.com" method="POST" enctype="multipart/form-data">                                
-                                <!-- Campos Ocultos de FormSubmit -->
-                                <input type="hidden" name="_subject" value="Solicitud de Diseño Personalizado - Scultura 3D">
-                                <input type="hidden" name="_captcha" value="false">
-                                <!-- Redirección a esta misma página con un parámetro de éxito. CLAVE para ocultar el formulario. -->
-                                <input type="hidden" name="_next" value="https://matiastreglia.github.io/Scultura3D/pages/tudise%C3%B1o.html?enviado=true"> 
-                                
-                                <!-- Campos de Contacto -->
-                                <div class="mb-3">
-                                    <label for="nombre" class="form-label">Nombre</label>
-                                    <input type="text" class="form-control" id="nombre" name="Nombre" placeholder="Tu nombre" required />
-                                </div>
-                                <div class="mb-3">
-                                    <label for="email" class="form-label">Correo electrónico</label>
-                                    <input type="email" class="form-control" id="email" name="Email" placeholder="tucorreo@mail.com" required />
-                                </div>
-                                
-                                <!-- NUEVOS CAMPOS DE DETALLES DEL DISEÑO -->
-                                <h5 class="mt-4 mb-3">Detalles de la Impresión</h5>
-                                
-                                <div class="mb-3">
-                                    <label for="cantidad" class="form-label">Cantidad de impresiones</label>
-                                    <input type="number" class="form-control" id="cantidad" name="Cantidad de Impresiones" min="1" value="1" required />
-                                </div>
-                                
-                                <div class="mb-3">
-                                    <label for="colores" class="form-label">Color o colores deseados</label>
-                                    <input type="text" class="form-control" id="colores" name="Colores" placeholder="Ej: Rojo y Blanco / Un solo color" required />
-                                </div>
-                                
-                                <div class="mb-3">
-                                    <label for="tamano" class="form-label">Tamaño (aproximado)</label>
-                                    <input type="text" class="form-control" id="tamano" name="Tamaño" placeholder="Ej: 15cm de alto o 10x10cm" required />
-                                </div>
+                            <div id="form-messages" class="text-center"></div>
 
-                                <!-- Mensaje y Archivos -->
-                                <div class="mb-3">
-                                    <label for="mensaje" class="form-label">Descripción detallada del diseño</label>
-                                    <textarea class="form-control" id="mensaje" name="Mensaje" rows="5" placeholder="Explicá los detalles del diseño que querés..." required></textarea>
-                                </div>
+<form id="designForm">
+    <div class="mb-3">
+        <label for="nombre" class="form-label">Nombre</label>
+        <input type="text" class="form-control" id="nombre" placeholder="Tu nombre" required name="Nombre" />
+    </div>
 
-                                <div class="mb-3">
-                                    <label for="imagenes" class="form-label">Subí tus imágenes o modelos 3D (opcional)</label>
-                                    <input class="form-control" type="file" id="imagenes" name="Archivos adjuntos" multiple accept="image/*,.stl,.obj,.zip" />
-                                </div>
+    <div class="mb-3">
+        <label for="email" class="form-label">Correo electrónico</label>
+        <input type="email" class="form-control" id="email" placeholder="tucorreo@mail.com" required name="Email" />
+    </div>
 
-                                <!-- Botón -->
-                                <div class="d-grid">
-                                    <button type="submit" class="btn btn-primary btn-lg">
-                                        Enviar solicitud
-                                    </button>
-                                </div>
-                            </form>
+    <div class="mb-3">
+        <label for="mensaje" class="form-label">Descripción del diseño</label>
+        <textarea class="form-control" id="mensaje" rows="5"
+            placeholder="Explicá los detalles del diseño que querés..." required
+            name="Descripción del Diseño"></textarea>
+    </div>
+
+    <div class="mb-3">
+        <label for="imagenes" class="form-label">Subí tus imágenes (opcional)</label>
+        <input class="form-control" type="file" id="imagenes" multiple accept="image/*" name="Archivos de Referencia" />
+    </div>
+
+    <div class="d-grid">
+        <button type="submit" class="btn btn-primary btn-lg">
+            Enviar solicitud
+        </button>
+    </div>
+</form>
                         </div>
                     </div>
-                     <!-- CONTENEDOR DEL MENSAJE DE ÉXITO (Inicialmente vacío) -->
-                    <div id="mensaje-exito" class="mt-5"></div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-    <!-- Tu JavaScript para la lógica de éxito -->
-    <script src="../js/tudiseño.js"></script> 
+    <script src="../js/formsubmit.js"></script>
 </body>
 
 </html>
