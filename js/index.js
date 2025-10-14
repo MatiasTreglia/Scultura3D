@@ -1,5 +1,48 @@
 // =========================================================
-// 1. LÓGICA DEL CARRITO (Añadir y Contar)
+// 1. LÓGICA DEL FORMULARIO DE CONTACTO (Mensaje de Éxito)
+// Esta lógica se ejecuta solo en index.html
+// =========================================================
+
+document.addEventListener('DOMContentLoaded', () => {
+    // Verificamos si los elementos de contacto existen en esta página
+    const contactoSection = document.getElementById('contacto-section');
+    if (contactoSection) {
+        
+        const params = new URLSearchParams(window.location.search);
+        const formEnviado = params.get('enviado');
+
+        const mensajeExito = document.getElementById('mensaje-exito');
+        const contenidoFormulario = document.getElementById('contenido-formulario');
+
+        if (formEnviado === 'true') {
+            // Ocultar el contenido normal del formulario
+            if (contenidoFormulario) {
+                contenidoFormulario.style.display = 'none';
+            }
+            
+            // Mostrar el mensaje de éxito
+            if (mensajeExito) {
+                mensajeExito.style.display = 'block';
+            }
+
+            // Limpiar la URL del parámetro de éxito, manteniendo el scroll en #contacto
+            window.history.replaceState(null, null, window.location.pathname + "#contacto");
+            
+        } else {
+            // Aseguramos que el formulario esté visible si no hay envío exitoso
+            if (contenidoFormulario) {
+                contenidoFormulario.style.display = 'grid'; 
+            }
+            if (mensajeExito) {
+                mensajeExito.style.display = 'none';
+            }
+        }
+    }
+});
+
+
+// =========================================================
+// 2. LÓGICA DEL CARRITO (Añadir y Contar) - LÓGICA EXISTENTE
 // =========================================================
 
 // Inicializa el carrito obteniendo datos del localStorage o un array vacío
@@ -9,6 +52,7 @@ let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
 // Nota: 'contador-carrito' se encuentra en nuevoND.html (el archivo de productos)
 const contadorCarrito = document.getElementById('contador-carrito');
 const botonesAgregar = document.querySelectorAll('.card button.btn'); 
+const tarjetasProductos = document.querySelectorAll('.card');
 
 // Función para actualizar el contador visual del carrito en el header
 function actualizarContador() {
@@ -37,53 +81,48 @@ function agregarAlCarrito(productoData) {
     }
 
     guardarCarrito(); // Guarda el carrito actualizado
-    actualizarContador(); // Actualiza el contador
+    actualizarContador(); // Actualiza el número en el ícono
+    // Aquí podrías agregar un mensaje temporal de "Producto añadido" si fuera necesario
+    console.log(`Producto ${productoData.nombre} añadido. Carrito actual:`, carrito);
 }
 
-// Asigna el evento 'click' a cada botón 'Agregar al carrito'
-botonesAgregar.forEach((boton, index) => {
-    boton.addEventListener('click', (event) => {
-        event.preventDefault(); 
-        
-        // Obtiene el elemento contenedor más cercano para extraer datos
-        const cardElement = boton.closest('.card');
-        
-        const nombreProducto = cardElement.querySelector('h3').textContent;
-        const precioTexto = cardElement.querySelector('.precio').textContent;
-        
-        // Limpia el precio y lo convierte a número (asume el formato "$950")
-        const precioLimpio = precioTexto.replace('$', '').replace('.', '').trim();
-        const precio = parseFloat(precioLimpio);
 
-        // Crea el objeto del producto
-        const producto = {
-            // ID único basado en el nombre para evitar duplicados si se añade un producto nuevo
-            id: nombreProducto.replace(/\s/g, ''), 
-            nombre: nombreProducto,
-            precio: precio,
-            imagen: cardElement.querySelector('img').src // Obtenemos la ruta de la imagen
-        };
+// Asignar el evento click a los botones de "Agregar al carrito"
+// Esto solo funcionará si estamos en nuevoND.html (donde existen las tarjetas)
+if (botonesAgregar.length > 0) {
+    botonesAgregar.forEach(button => {
+        button.addEventListener('click', (event) => {
+            const card = event.target.closest('.card'); // Encuentra la tarjeta padre
+            if (!card) return;
 
-        agregarAlCarrito(producto);
+            // Extrae los datos del producto
+            const productoData = {
+                id: card.querySelector('h3').textContent.replace(/\s/g, '-'), // Genera un ID simple
+                nombre: card.querySelector('h3').textContent,
+                precio: parseFloat(card.querySelector('.precio').textContent.replace('$', '').replace(',', '.')), // Limpia el precio
+                imagen: card.querySelector('.card-img img').src,
+            };
+
+            agregarAlCarrito(productoData);
+        });
     });
-});
+}
 
-// Inicializa el contador al cargar la página (se ejecuta en todas las páginas)
-document.addEventListener('DOMContentLoaded', actualizarContador);
+
+// Inicializa el contador al cargar la página
+actualizarContador();
+
 
 // =========================================================
-// 2. LÓGICA DE FILTRADO DE PRODUCTOS POR CATEGORÍA
-// Se ejecuta SOLO en nuevoND.html
+// 3. LÓGICA DE FILTRADO DE PRODUCTOS - LÓGICA EXISTENTE
 // =========================================================
 
-const enlacesCategorias = document.querySelectorAll('.categorias li a');
-const tarjetasProductos = document.querySelectorAll('.grid-productos .card');
+// Elementos del DOM
+const enlacesCategorias = document.querySelectorAll('#menu-categorias a');
 
-if (enlacesCategorias.length > 0 && tarjetasProductos.length > 0) {
-    // Solo si estamos en la página de productos (donde existen categorías y tarjetas)
-
+// 1. La Función Principal de Filtrado
+if (enlacesCategorias.length > 0) {
     function filtrarProductos(categoriaSeleccionada) {
-        // 1. Ocultar/Mostrar Productos
         tarjetasProductos.forEach(card => {
             // El atributo data-categoria que pusimos en el HTML
             const categoriaProducto = card.getAttribute('data-categoria');
