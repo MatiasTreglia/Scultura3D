@@ -14,10 +14,10 @@ document.addEventListener('DOMContentLoaded', () => {
         const formEnviado = params.get('enviado');
 
         const contenidoFormulario = document.getElementById('contenido-formulario');
-        const botonReiniciar = document.getElementById('reiniciar-formulario'); // Nuevo elemento
+        const botonReiniciar = document.getElementById('reiniciar-formulario'); 
 
         if (formEnviado === 'true') {
-            // MOSTRAR MENSAJE
+            // MOSTRAR MENSAJE DE ÉXITO Y OCULTAR FORMULARIO
             if (contenidoFormulario) {
                 contenidoFormulario.style.display = 'none';
             }
@@ -30,13 +30,15 @@ document.addEventListener('DOMContentLoaded', () => {
                 botonReiniciar.addEventListener('click', (event) => {
                     event.preventDefault(); // Previene la navegación por defecto del link
                     
-                    // Recarga la página, volviendo al index.html y al ancla #contacto,
-                    // PERO sin el parámetro "?enviado=true" en la URL.
+                    // ¡CORRECCIÓN CLAVE! Forzamos la recarga de la página actual.
+                    // Esto elimina el parámetro "?enviado=true" de la URL.
                     window.location.href = window.location.pathname + '#contacto';
+                    window.location.reload(); 
                 });
             }
 
             // Limpiar la URL del parámetro de éxito para que no se muestre si el usuario recarga manualmente
+            // El ancla #contacto mantiene la posición del scroll.
             window.history.replaceState(null, null, window.location.pathname + "#contacto");
             
         } else {
@@ -103,6 +105,7 @@ if (botonesAgregar.length > 0) {
             const productoData = {
                 id: card.querySelector('h3').textContent.replace(/\s/g, '-'), 
                 nombre: card.querySelector('h3').textContent,
+                // Aseguramos que el precio se parsee correctamente
                 precio: parseFloat(card.querySelector('.precio').textContent.replace('$', '').replace(',', '.')), 
                 imagen: card.querySelector('.card-img img').src,
             };
