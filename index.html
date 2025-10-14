@@ -119,42 +119,26 @@
         </div>
     </section>
 
-<section id="contacto" class="contacto">
-    <h2>Contacto</h2>
-    <p>¿Tenés alguna consulta o querés más información? Escribinos.</p>
+    <section id="contacto" class="contacto">
+        <h2>Contacto</h2>
+        <p>¿Tenés alguna consulta o querés más información? Escribinos.</p>
 
-    <div class="contacto-contenido" id="contenido-formulario">
-        <!-- FORMULARIO CORREGIDO CON ACTION Y METHOD="POST" -->
-        <form class="contacto-form" action="https://formsubmit.co/scultura3d.studio@gmail.com" method="POST">
-            <input type="hidden" name="_subject" value="Consulta desde la página de Contacto">
-            <!-- URL DE GITHUB PAGES PARA REDIRECCIÓN -->
-            <input type="hidden" name="_next" value="https://matiastreglia.github.io/Scultura3D/index.html?enviado=true#contacto"> 
-            <input type="hidden" name="_captcha" value="false">
+        <div class="contacto-contenido">
+            <form class="contacto-form">
+                <input type="text" name="nombre" placeholder="Tu nombre" required />
+                <input type="email" name="email" placeholder="Tu correo electrónico" required />
+                <textarea name="mensaje" rows="5" placeholder="Escribe tu mensaje..." required></textarea>
+                <button type="submit">Enviar</button>
+            </form>
 
-            <input type="text" name="Nombre" placeholder="Tu nombre" required />
-            <input type="email" name="Email" placeholder="Tu correo electrónico" required />
-            <textarea name="Mensaje" rows="5" placeholder="Escribe tu mensaje..." required></textarea>
-            <button type="submit">Enviar</button>
-        </form>
-
-        <div class="contacto-info">
-            <h3>También podés encontrarnos en:</h3>
-            <p><strong>Tel:</strong> +54 11 30493689</p>
-            <p><strong>Email:</strong> scultura3D.studio@gmail.com</p>
-            <p><strong>Dirección:</strong> Av. San Juan 3629</p>
+            <div class="contacto-info">
+                <h3>También podés encontrarnos en:</h3>
+                <p><strong>Tel:</strong> +54 11 30493689</p>
+                <p><strong>Email:</strong> scultura3D.studio@gmail.com</p>
+                <p><strong>Dirección:</strong> Av. San Juan 3629</p>
+            </div>
         </div>
-    </div>
-
-    <!-- MENSAJE DE ÉXITO (Inicialmente Oculto) -->
-    <div id="mensaje-exito" style="display: none; padding: 3rem; max-width: 1000px; margin: 3rem auto; border-radius: 10px; background-color: #e6ffed; border: 1px solid #c3e6cb; text-align: center;">
-        <h2 style="color: #155724; font-size: 2rem;">¡Mensaje Enviado con Éxito!</h2>
-        <p style="color: #155724; font-size: 1.1rem; margin-top: 1rem;">
-            Gracias por contactarnos. Hemos recibido tu consulta y te responderemos a la brevedad.
-        </p>
-        <!-- ¡CORRECCIÓN CLAVE! Quitamos el ID y apuntamos directamente a la página limpia. -->
-        <a href="index.html#contacto" style="display: inline-block; margin-top: 20px; padding: 10px 20px; background-color: #28a745; color: white; text-decoration: none; border-radius: 5px;">Volver a Contacto</a>
-    </div>
-</section>
+    </section>
 
     <footer>
         <p>© 2025 Scultura 3D - Todos los derechos reservados</p>
