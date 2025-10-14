@@ -4,14 +4,16 @@
 // =========================================================
 
 document.addEventListener('DOMContentLoaded', () => {
-    // Verificamos si los elementos de contacto existen en esta página
-    const contactoSection = document.getElementById('contacto-section');
-    if (contactoSection) {
+    // ¡CORRECCIÓN CLAVE! Verificamos si la sección de contacto (con el ID "contacto") existe
+    const contactoSection = document.getElementById('contacto'); 
+    const mensajeExito = document.getElementById('mensaje-exito');
+    
+    // Solo ejecutamos esta lógica si estamos en la página que tiene el formulario de contacto
+    if (contactoSection && mensajeExito) {
         
         const params = new URLSearchParams(window.location.search);
         const formEnviado = params.get('enviado');
 
-        const mensajeExito = document.getElementById('mensaje-exito');
         const contenidoFormulario = document.getElementById('contenido-formulario');
 
         if (formEnviado === 'true') {
@@ -29,9 +31,9 @@ document.addEventListener('DOMContentLoaded', () => {
             window.history.replaceState(null, null, window.location.pathname + "#contacto");
             
         } else {
-            // Aseguramos que el formulario esté visible si no hay envío exitoso
+            // Si no se ha enviado, aseguramos que el formulario esté visible
             if (contenidoFormulario) {
-                contenidoFormulario.style.display = 'grid'; 
+                contenidoFormulario.style.display = 'grid'; // Usamos grid, como está definido en el HTML
             }
             if (mensajeExito) {
                 mensajeExito.style.display = 'none';
@@ -49,16 +51,14 @@ document.addEventListener('DOMContentLoaded', () => {
 let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
 
 // Elementos del DOM
-// Nota: 'contador-carrito' se encuentra en nuevoND.html (el archivo de productos)
 const contadorCarrito = document.getElementById('contador-carrito');
 const botonesAgregar = document.querySelectorAll('.card button.btn'); 
 const tarjetasProductos = document.querySelectorAll('.card');
 
 // Función para actualizar el contador visual del carrito en el header
 function actualizarContador() {
-    // Suma la cantidad de todos los productos en el carrito.
     const totalItems = carrito.reduce((sum, producto) => sum + producto.cantidad, 0);
-    if (contadorCarrito) { // Verifica si el elemento existe (solo existe en nuevoND.html y carrito.html)
+    if (contadorCarrito) { 
         contadorCarrito.textContent = totalItems.toString();
     }
 }
@@ -73,33 +73,28 @@ function agregarAlCarrito(productoData) {
     const productoExistente = carrito.find(p => p.id === productoData.id);
 
     if (productoExistente) {
-        // Si existe, solo incrementa la cantidad
         productoExistente.cantidad += 1;
     } else {
-        // Si no existe, lo agrega al carrito con cantidad inicial de 1
         carrito.push({ ...productoData, cantidad: 1 });
     }
 
-    guardarCarrito(); // Guarda el carrito actualizado
-    actualizarContador(); // Actualiza el número en el ícono
-    // Aquí podrías agregar un mensaje temporal de "Producto añadido" si fuera necesario
+    guardarCarrito(); 
+    actualizarContador(); 
     console.log(`Producto ${productoData.nombre} añadido. Carrito actual:`, carrito);
 }
 
 
 // Asignar el evento click a los botones de "Agregar al carrito"
-// Esto solo funcionará si estamos en nuevoND.html (donde existen las tarjetas)
 if (botonesAgregar.length > 0) {
     botonesAgregar.forEach(button => {
         button.addEventListener('click', (event) => {
-            const card = event.target.closest('.card'); // Encuentra la tarjeta padre
+            const card = event.target.closest('.card'); 
             if (!card) return;
 
-            // Extrae los datos del producto
             const productoData = {
-                id: card.querySelector('h3').textContent.replace(/\s/g, '-'), // Genera un ID simple
+                id: card.querySelector('h3').textContent.replace(/\s/g, '-'), 
                 nombre: card.querySelector('h3').textContent,
-                precio: parseFloat(card.querySelector('.precio').textContent.replace('$', '').replace(',', '.')), // Limpia el precio
+                precio: parseFloat(card.querySelector('.precio').textContent.replace('$', '').replace(',', '.')), 
                 imagen: card.querySelector('.card-img img').src,
             };
 
@@ -111,6 +106,7 @@ if (botonesAgregar.length > 0) {
 
 // Inicializa el contador al cargar la página
 actualizarContador();
+
 
 // =========================================================
 // 3. LÓGICA DE FILTRADO DE PRODUCTOS - LÓGICA EXISTENTE
