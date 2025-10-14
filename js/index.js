@@ -3,43 +3,45 @@
 // =========================================================
 
 document.addEventListener('DOMContentLoaded', () => {
-    
-    const contactoSection = document.getElementById('contacto'); 
+
+    const contactoSection = document.getElementById('contacto');
     const mensajeExito = document.getElementById('mensaje-exito');
-    
+
     // Solo ejecutamos esta lógica si estamos en la página que tiene el formulario de contacto
     if (contactoSection && mensajeExito) {
-        
+
         const params = new URLSearchParams(window.location.search);
         const formEnviado = params.get('enviado');
 
         const contenidoFormulario = document.getElementById('contenido-formulario');
-        // Eliminamos la variable botonReiniciar, ya no se usa.
 
         if (formEnviado === 'true') {
-            // MOSTRAR MENSAJE DE ÉXITO Y OCULTAR FORMULARIO
+            // PASO 2: MOSTRAR MENSAJE DE ÉXITO Y OCULTAR FORMULARIO
             if (contenidoFormulario) {
-                // Usamos 'none' para ocultarlo del layout
-                contenidoFormulario.style.display = 'none'; 
+                contenidoFormulario.style.display = 'none';
             }
             if (mensajeExito) {
                 mensajeExito.style.display = 'block';
             }
 
-            // Limpiar la URL del parámetro de éxito.
-            // Si el usuario recarga manualmente o navega, verá el formulario normal.
-            window.history.replaceState(null, null, window.location.pathname + "#contacto");
-            
+            // PASO 3: HACER SCROLL A LA SECCIÓN DE CONTACTO PARA QUE EL USUARIO VEA EL MENSAJE
+            contactoSection.scrollIntoView({ behavior: 'smooth' });
+
+            // PASO 4: Limpiar la URL del parámetro de éxito.
+            window.history.replaceState(null, null, window.location.pathname);
+
         } else {
             // MOSTRAR FORMULARIO (estado normal)
             if (contenidoFormulario) {
-                contenidoFormulario.style.display = 'grid'; 
+                contenidoFormulario.style.display = 'grid';
             }
             if (mensajeExito) {
                 mensajeExito.style.display = 'none';
             }
         }
     }
+    
+    // ... El resto de tu código JS (Carrito y Filtros) ...
 });
 
 
@@ -52,13 +54,13 @@ let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
 
 // Elementos del DOM
 const contadorCarrito = document.getElementById('contador-carrito');
-const botonesAgregar = document.querySelectorAll('.card button.btn'); 
+const botonesAgregar = document.querySelectorAll('.card button.btn');
 const tarjetasProductos = document.querySelectorAll('.card');
 
 // Función para actualizar el contador visual del carrito en el header
 function actualizarContador() {
     const totalItems = carrito.reduce((sum, producto) => sum + producto.cantidad, 0);
-    if (contadorCarrito) { 
+    if (contadorCarrito) {
         contadorCarrito.textContent = totalItems.toString();
     }
 }
@@ -78,8 +80,8 @@ function agregarAlCarrito(productoData) {
         carrito.push({ ...productoData, cantidad: 1 });
     }
 
-    guardarCarrito(); 
-    actualizarContador(); 
+    guardarCarrito();
+    actualizarContador();
     console.log(`Producto ${productoData.nombre} añadido. Carrito actual:`, carrito);
 }
 
@@ -88,14 +90,14 @@ function agregarAlCarrito(productoData) {
 if (botonesAgregar.length > 0) {
     botonesAgregar.forEach(button => {
         button.addEventListener('click', (event) => {
-            const card = event.target.closest('.card'); 
+            const card = event.target.closest('.card');
             if (!card) return;
 
             const productoData = {
-                id: card.querySelector('h3').textContent.replace(/\s/g, '-'), 
+                id: card.querySelector('h3').textContent.replace(/\s/g, '-'),
                 nombre: card.querySelector('h3').textContent,
                 // Aseguramos que el precio se parsee correctamente
-                precio: parseFloat(card.querySelector('.precio').textContent.replace('$', '').replace(',', '.')), 
+                precio: parseFloat(card.querySelector('.precio').textContent.replace('$', '').replace(',', '.')),
                 imagen: card.querySelector('.card-img img').src,
             };
 
@@ -123,9 +125,9 @@ if (enlacesCategorias.length > 0) {
             const categoriaProducto = card.getAttribute('data-categoria');
 
             if (categoriaSeleccionada === 'Todos' || categoriaProducto === categoriaSeleccionada) {
-                card.style.display = 'flex'; 
+                card.style.display = 'flex';
             } else {
-                card.style.display = 'none'; 
+                card.style.display = 'none';
             }
         });
 
@@ -142,7 +144,7 @@ if (enlacesCategorias.length > 0) {
     // 3. Asignar el Evento 'click' a cada enlace de categoría
     enlacesCategorias.forEach(link => {
         link.addEventListener('click', (event) => {
-            event.preventDefault(); 
+            event.preventDefault();
 
             const categoria = event.target.getAttribute('data-categoria');
             filtrarProductos(categoria);

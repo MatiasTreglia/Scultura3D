@@ -124,11 +124,9 @@
     <p>¿Tenés alguna consulta o querés más información? Escribinos.</p>
 
     <div class="contacto-contenido" id="contenido-formulario">
-        <!-- FORMULARIO CORREGIDO CON ACTION Y METHOD="POST" -->
         <form class="contacto-form" action="https://formsubmit.co/scultura3d.studio@gmail.com" method="POST">
             <input type="hidden" name="_subject" value="Consulta desde la página de Contacto">
-            <!-- URL DE GITHUB PAGES PARA REDIRECCIÓN -->
-            <input type="hidden" name="_next" value="https://matiastreglia.github.io/Scultura3D/index.html?enviado=true#contacto"> 
+            <input type="hidden" name="_next" value="https://matiastreglia.github.io/Scultura3D/index.html?enviado=true"> 
             <input type="hidden" name="_captcha" value="false">
 
             <input type="text" name="Nombre" placeholder="Tu nombre" required />
@@ -145,13 +143,11 @@
         </div>
     </div>
 
-    <!-- MENSAJE DE ÉXITO (Inicialmente Oculto) -->
     <div id="mensaje-exito" style="display: none; padding: 3rem; max-width: 1000px; margin: 3rem auto; border-radius: 10px; background-color: #e6ffed; border: 1px solid #c3e6cb; text-align: center;">
         <h2 style="color: #155724; font-size: 2rem;">¡Mensaje Enviado con Éxito!</h2>
         <p style="color: #155724; font-size: 1.1rem; margin-top: 1rem;">
             Gracias por contactarnos. Hemos recibido tu consulta y te responderemos a la brevedad.
         </p>
-        <!-- ¡CORRECCIÓN CLAVE! Quitamos el ID y apuntamos directamente a la página limpia. -->
         <a href="index.html#contacto" style="display: inline-block; margin-top: 20px; padding: 10px 20px; background-color: #28a745; color: white; text-decoration: none; border-radius: 5px;">Volver a Contacto</a>
     </div>
 </section>
