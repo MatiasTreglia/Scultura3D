@@ -1,5 +1,5 @@
 // =========================================================
-// 1. LÓGICA DEL FORMULARIO DE CONTACTO (Mensaje de Éxito y Recarga)
+// 1. LÓGICA DEL FORMULARIO DE CONTACTO (Mensaje de Éxito)
 // =========================================================
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -14,35 +14,24 @@ document.addEventListener('DOMContentLoaded', () => {
         const formEnviado = params.get('enviado');
 
         const contenidoFormulario = document.getElementById('contenido-formulario');
-        const botonReiniciar = document.getElementById('reiniciar-formulario'); 
+        // Eliminamos la variable botonReiniciar, ya no se usa.
 
         if (formEnviado === 'true') {
             // MOSTRAR MENSAJE DE ÉXITO Y OCULTAR FORMULARIO
             if (contenidoFormulario) {
-                contenidoFormulario.style.display = 'none';
+                // Usamos 'none' para ocultarlo del layout
+                contenidoFormulario.style.display = 'none'; 
             }
             if (mensajeExito) {
                 mensajeExito.style.display = 'block';
             }
 
-            // Asignar el evento al botón para recargar/limpiar
-            if (botonReiniciar) {
-                botonReiniciar.addEventListener('click', (event) => {
-                    event.preventDefault(); // Previene la navegación por defecto del link
-                    
-                    // ¡CORRECCIÓN CLAVE! Forzamos la recarga de la página actual.
-                    // Esto elimina el parámetro "?enviado=true" de la URL.
-                    window.location.href = window.location.pathname + '#contacto';
-                    window.location.reload(); 
-                });
-            }
-
-            // Limpiar la URL del parámetro de éxito para que no se muestre si el usuario recarga manualmente
-            // El ancla #contacto mantiene la posición del scroll.
+            // Limpiar la URL del parámetro de éxito.
+            // Si el usuario recarga manualmente o navega, verá el formulario normal.
             window.history.replaceState(null, null, window.location.pathname + "#contacto");
             
         } else {
-            // MOSTRAR FORMULARIO
+            // MOSTRAR FORMULARIO (estado normal)
             if (contenidoFormulario) {
                 contenidoFormulario.style.display = 'grid'; 
             }
