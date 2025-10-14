@@ -124,12 +124,14 @@
         <p>¿Tenés alguna consulta o querés más información? Escribinos.</p>
 
         <div class="contacto-contenido">
-            <form class="contacto-form">
-                <input type="text" name="nombre" placeholder="Tu nombre" required />
-                <input type="email" name="email" placeholder="Tu correo electrónico" required />
-                <textarea name="mensaje" rows="5" placeholder="Escribe tu mensaje..." required></textarea>
-                <button type="submit">Enviar</button>
-            </form>
+            <form id="contactForm" class="contacto-form">
+    <input type="text" name="nombre" placeholder="Tu nombre" required />
+    <input type="email" name="email" placeholder="Tu correo electrónico" required />
+    <textarea name="mensaje" rows="5" placeholder="Escribe tu mensaje..." required></textarea>
+    <button type="submit">Enviar</button>
+    <div id="contact-form-messages" class="mt-3 text-center"></div>
+</form>
+
 
             <div class="contacto-info">
                 <h3>También podés encontrarnos en:</h3>
@@ -150,5 +152,6 @@
     crossorigin="anonymous"></script>
 
 <script src="./js/index.js"></script>
+<script src="./js/contactform.js"></script>
 
 </html>
