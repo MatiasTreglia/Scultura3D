@@ -1,10 +1,9 @@
 // =========================================================
-// 1. LÓGICA DEL FORMULARIO DE CONTACTO (Mensaje de Éxito)
-// Esta lógica se ejecuta solo en index.html
+// 1. LÓGICA DEL FORMULARIO DE CONTACTO (Mensaje de Éxito y Recarga)
 // =========================================================
 
 document.addEventListener('DOMContentLoaded', () => {
-    // ¡CORRECCIÓN CLAVE! Verificamos si la sección de contacto (con el ID "contacto") existe
+    
     const contactoSection = document.getElementById('contacto'); 
     const mensajeExito = document.getElementById('mensaje-exito');
     
@@ -15,25 +14,35 @@ document.addEventListener('DOMContentLoaded', () => {
         const formEnviado = params.get('enviado');
 
         const contenidoFormulario = document.getElementById('contenido-formulario');
+        const botonReiniciar = document.getElementById('reiniciar-formulario'); // Nuevo elemento
 
         if (formEnviado === 'true') {
-            // Ocultar el contenido normal del formulario
+            // MOSTRAR MENSAJE
             if (contenidoFormulario) {
                 contenidoFormulario.style.display = 'none';
             }
-            
-            // Mostrar el mensaje de éxito
             if (mensajeExito) {
                 mensajeExito.style.display = 'block';
             }
 
-            // Limpiar la URL del parámetro de éxito, manteniendo el scroll en #contacto
+            // Asignar el evento al botón para recargar/limpiar
+            if (botonReiniciar) {
+                botonReiniciar.addEventListener('click', (event) => {
+                    event.preventDefault(); // Previene la navegación por defecto del link
+                    
+                    // Recarga la página, volviendo al index.html y al ancla #contacto,
+                    // PERO sin el parámetro "?enviado=true" en la URL.
+                    window.location.href = window.location.pathname + '#contacto';
+                });
+            }
+
+            // Limpiar la URL del parámetro de éxito para que no se muestre si el usuario recarga manualmente
             window.history.replaceState(null, null, window.location.pathname + "#contacto");
             
         } else {
-            // Si no se ha enviado, aseguramos que el formulario esté visible
+            // MOSTRAR FORMULARIO
             if (contenidoFormulario) {
-                contenidoFormulario.style.display = 'grid'; // Usamos grid, como está definido en el HTML
+                contenidoFormulario.style.display = 'grid'; 
             }
             if (mensajeExito) {
                 mensajeExito.style.display = 'none';
