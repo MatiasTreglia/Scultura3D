@@ -112,27 +112,22 @@ if (botonesAgregar.length > 0) {
 // Inicializa el contador al cargar la página
 actualizarContador();
 
-
 // =========================================================
 // 3. LÓGICA DE FILTRADO DE PRODUCTOS - LÓGICA EXISTENTE
 // =========================================================
 
 // Elementos del DOM
-const enlacesCategorias = document.querySelectorAll('#menu-categorias a');
+const enlacesCategorias = document.querySelectorAll('.sidebar .categorias a');
 
 // 1. La Función Principal de Filtrado
 if (enlacesCategorias.length > 0) {
     function filtrarProductos(categoriaSeleccionada) {
         tarjetasProductos.forEach(card => {
-            // El atributo data-categoria que pusimos en el HTML
             const categoriaProducto = card.getAttribute('data-categoria');
 
-            // CORRECCIÓN FINAL: Usamos display: none para que el grid se reorganice
             if (categoriaSeleccionada === 'Todos' || categoriaProducto === categoriaSeleccionada) {
-                // Muestra la tarjeta. Usamos 'flex' porque la tarjeta usa display: flex; en newND.css
                 card.style.display = 'flex'; 
             } else {
-                // Oculta completamente la tarjeta del flujo del grid para que no deje huecos
                 card.style.display = 'none'; 
             }
         });
@@ -150,7 +145,7 @@ if (enlacesCategorias.length > 0) {
     // 3. Asignar el Evento 'click' a cada enlace de categoría
     enlacesCategorias.forEach(link => {
         link.addEventListener('click', (event) => {
-            event.preventDefault(); // Detiene el comportamiento del enlace (ir a #)
+            event.preventDefault(); 
 
             const categoria = event.target.getAttribute('data-categoria');
             filtrarProductos(categoria);
