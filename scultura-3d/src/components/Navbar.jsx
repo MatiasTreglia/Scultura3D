@@ -1,47 +1,53 @@
-// src/components/Navbar.jsx
 import { Link } from "react-router-dom";
-import { FaWhatsapp, FaInstagram, FaShoppingCart } from "react-icons/fa";
-import { useContext } from "react";               // <--- Importamos hook
-import { CartContext } from "../context/Context"; // <--- Importamos Contexto
+import { useContext } from "react";
+// DEBE CAMBIAR: Importar el objeto de contexto desde el nuevo archivo
+import { CartContext } from "../context/CartContext"; 
+// Importaciones de iconos
+import { FaWhatsapp, FaInstagram, FaShoppingCart } from 'react-icons/fa';
 
 const Navbar = () => {
-    // AQUI USAMOS EL CONTEXTO Y EXTRAEMOS totalItems
-    const { totalItems } = useContext(CartContext); // <--- Usamos el contexto
-  return (
-    <header>
-        <div className="logo">
-            {/* El Link reemplaza a la etiqueta <a> para navegación interna */}
-            <Link to="/">
-                <img src="/img/logo.png" alt="Logo Scultura 3D" />
-            </Link>
+    const { carrito } = useContext(CartContext);
+    
+    // Calcula la cantidad total de ítems en el carrito
+    const contadorCarrito = carrito.reduce((acc, item) => acc + item.cantidad, 0);
 
-            <a href="https://wa.me/+541130493689" target="_blank" className="text-success fs-4 me-3">
-                <FaWhatsapp />
-            </a>
+    return (
+        <header>
+            <div className="logo">
+                <Link to="/"> 
+                    <img src="img/logo.png" alt="Logo Scultura 3D" /> 
+                </Link>
+                
+                {/* ICONO DE WHATSAPP (CORREGIDO) */}
+                {/* Usamos el componente FaWhatsapp y le aplicamos las clases de Bootstrap */}
+                <a href="https://wa.me/+541130493689" target="_blank" className="text-success fs-4 me-3">
+                    <FaWhatsapp /> 
+                </a>
+                
+                {/* ICONO DE INSTAGRAM (CORREGIDO) */}
+                <a href="https://www.instagram.com/tuusuario" target="_blank" className="text-danger fs-4 me-3">
+                    <FaInstagram /> 
+                </a>
+            </div>
+            
+            <nav className="_navbar">
+                <ul className="nav-links">
+                    <li><Link to="/">Inicio</Link></li>
+                    <li><Link to="/productos">Nuestros Diseños</Link></li>
+                    <li><Link to="/diseno">Hacemos Tu diseno</Link></li>
+                    <li><Link to="/#contacto">Contacto</Link></li>
+                </ul>
+            </nav>
 
-            <a href="https://www.instagram.com/tuusuario" target="_blank" className="text-danger fs-4 me-3">
-                <FaInstagram />
-            </a>
-        </div>
-
-        <nav className="_navbar">
-            <ul className="nav-links">
-                <li><Link to="/">Inicio</Link></li>
-                <li><Link to="/productos">Nuestros Diseños</Link></li>
-                <li><Link to="/diseno">Hacemos Tu diseño</Link></li>
-                <li><Link to="/#contacto">Contacto</Link></li>
-            </ul>
-        </nav>
-
-       <div>
+            <div>
+                {/* ICONO DEL CARRITO (CORREGIDO) */}
                 <Link to="/carrito" className="carrito-link me-3">
-                    <FaShoppingCart size={24} />
-                    {/* AQUI DEBERIAS USAR totalItems para mostrar el contador */}
-                    <span className="badge" id="contador-carrito">{totalItems}</span> 
+                    <FaShoppingCart className="fa-lg" /> {/* Aplicamos la clase fa-lg si es necesaria */}
+                    <span className="badge" id="contador-carrito">{contadorCarrito}</span>
                 </Link>
             </div>
-    </header>
-  );
+        </header>
+    );
 };
 
 export default Navbar;

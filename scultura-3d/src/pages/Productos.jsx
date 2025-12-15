@@ -1,9 +1,9 @@
-// src/pages/Productos.jsx (CÓDIGO CORREGIDO Y COMPLETO)
+// src/pages/Productos.jsx
 
-import { useContext } from "react";
+import { useContext } from "react"; 
 import { useSearchParams, Link } from "react-router-dom";
-import { productos } from "../data/productos"; // Asegúrate de que esta ruta sea correcta
-import { CartContext } from "../context/Context"; // Ruta al archivo simple de contexto
+import { productos } from "../data/productos"; // <-- ¡ESPACIO EN BLANCO ELIMINADO!
+import { CartContext } from "../context/CartContext";
 
 const categorias = [
     "Todos", 
@@ -15,13 +15,13 @@ const categorias = [
 ];
 
 const Productos = () => {
-    // Hooks de Contexto y Router
+    // 1. OBTENER CONTEXTO Y URL PARAMS
     const { agregarAlCarrito } = useContext(CartContext);
     const [searchParams, setSearchParams] = useSearchParams();
 
-    // 1. Lógica de Filtrado
     const categoriaActual = searchParams.get("categoria") || "Todos";
     
+    // 2. LÓGICA DE FILTRADO (CLAVE PARA DEFINIR productosFiltrados)
     const productosFiltrados = productos.filter(producto => {
         if (categoriaActual === "Todos") {
             return true;
@@ -29,41 +29,36 @@ const Productos = () => {
         return producto.categoria === categoriaActual;
     });
 
-    // Función para manejar el clic en la categoría
+    // 3. HANDLERS
     const handleCategoriaClick = (categoria) => {
         if (categoria === "Todos") {
-            setSearchParams({}); // Quita el parámetro para mostrar todos
+            setSearchParams({});
         } else {
-            setSearchParams({ categoria: categoria }); // Agrega el parámetro
+            setSearchParams({ categoria: categoria });
         }
     };
     
-    // Función para manejar la compra
     const handleAgregarCarrito = (producto) => {
-        agregarAlCarrito(producto);
+        // Asumo que tu función agregarAlCarrito está bien definida en el contexto
+        agregarAlCarrito(producto); 
         alert(`"${producto.nombre}" agregado al carrito!`);
     };
 
-    // ------------------------------------------
-    // 2. ESTRUCTURA JSX (Copia fiel del HTML)
-    // ------------------------------------------
     return (
-        <main className="layout"> {/* CLAVE 1: La clase que hace el Grid (2 columnas) */}
+        <main className="layout"> 
             
-            {/* ASIDE - Sidebar de Categorías */}
+            {/* SIDEBAR (Ahora usa la lógica de categorías) */}
             <aside className="sidebar"> 
                 <h2>Categorías</h2>
                 <ul className="categorias">
                     {categorias.map(cat => (
                         <li key={cat}>
-                            {/* Los enlaces ahora son <button> o <a> con onClick para usar el hook */}
                             <a 
                                 href="#"
                                 onClick={(e) => {
                                     e.preventDefault();
                                     handleCategoriaClick(cat);
                                 }}
-                                // Opcional: para dar feedback visual de la categoría seleccionada
                                 style={{ fontWeight: categoriaActual === cat ? 'bold' : 'normal' }}
                             >
                                 {cat === "Todos" ? "Todos los productos" : cat}
@@ -73,31 +68,30 @@ const Productos = () => {
                 </ul>
             </aside>
 
-            {/* SECTION - Grid de Productos */}
+            {/* GRILLA DE PRODUCTOS */}
             <section className="grid-productos">
-    {productosFiltrados.length > 0 ? (
-        productosFiltrados.map((producto) => (
-            <div className="card" key={producto.id} data-categoria={producto.categoria}>
-                <div className="card-img">
-                    {/* ¡LA CORRECCIÓN ESTÁ AQUÍ! Usa producto.imagen directamente */}
-                    <img src={producto.imagen} alt={producto.nombre} /> 
-                </div>
-                <div className="card-info">
-                    <h3>{producto.nombre}</h3>
-                    <p className="precio">${producto.precio}</p>
-                    <button 
-                        className="btn" 
-                        onClick={() => handleAgregarCarrito(producto)}
-                    >
-                        Agregar al carrito
-                    </button>
-                </div>
-            </div>
-        ))
-    ) : (
-        <p>No hay productos en esta categoría.</p>
-    )}
-</section>
+                {productosFiltrados.length > 0 ? (
+                    productosFiltrados.map((producto) => (
+                        <div className="card" key={producto.id} data-categoria={producto.categoria}>
+                            <div className="card-img">
+                                <img src={producto.imagen} alt={producto.nombre} /> 
+                            </div>
+                            <div className="card-info">
+                                <h3>{producto.nombre}</h3>
+                                <p className="precio">${producto.precio}</p>
+                                <button 
+                                    className="btn" 
+                                    onClick={() => handleAgregarCarrito(producto)}
+                                >
+                                    Agregar al carrito
+                                </button>
+                            </div>
+                        </div>
+                    ))
+                ) : (
+                    <p>No hay productos en esta categoría.</p>
+                )}
+            </section>
         </main>
     );
 };
