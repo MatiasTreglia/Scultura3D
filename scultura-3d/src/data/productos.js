@@ -1,7 +1,7 @@
-// src/data/productos.js (VERSIÓN CORREGIDA)
+
 
 export const productos = [
-    { id: 1, nombre: "Producto 1", precio: 950, categoria: "Llaveros", imagen: "img/1.jpg" }, // SIN BARRA INICIAL
+    { id: 1, nombre: "Producto 1", precio: 950, categoria: "Llaveros", imagen: "img/1.jpg" }, 
     { id: 2, nombre: "Producto 2", precio: 950, categoria: "Juguetes Anti Stress", imagen: "img/2.jpg" },
     { id: 3, nombre: "Producto 3", precio: 950, categoria: "Juguetes", imagen: "img/3.jpg" },
     { id: 4, nombre: "Producto 4", precio: 950, categoria: "Vasos Ferneteros", imagen: "img/4.jpg" },

@@ -1,11 +1,11 @@
-// src/App.jsx
+
 
 import { Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar"; 
 import Footer from "./components/Footer"; 
 import Home from "./pages/Home"; 
 import Productos from "./pages/Productos";
-import TuDiseno from "./pages/TuDiseno"; // <-- ¡CLAVE: Importación sin Ñ!
+import TuDiseno from "./pages/TuDiseno"; 
 import Carrito from "./pages/Carrito";
 
 const App = () => {
